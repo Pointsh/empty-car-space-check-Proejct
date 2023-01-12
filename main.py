@@ -2,8 +2,8 @@ import cv2
 import pickle
 import cvzone
 import numpy as np
- 
-# Video feed
+
+
 cap = cv2.VideoCapture('carPark.mp4')
  
 with open('CarParkPos', 'rb') as f:
@@ -19,10 +19,8 @@ def checkParkingSpace(imgPro):
         x, y = pos
  
         imgCrop = imgPro[y:y + height, x:x + width]
-        # cv2.imshow(str(x * y), imgCrop)
         count = cv2.countNonZero(imgCrop)
- 
- 
+
         if count < 900:
             color = (0, 255, 0)
             thickness = 5
@@ -52,6 +50,4 @@ while True:
  
     checkParkingSpace(imgDilate)
     cv2.imshow("Image", img)
-    # cv2.imshow("ImageBlur", imgBlur)
-    # cv2.imshow("ImageThres", imgMedian)
     cv2.waitKey(10)
